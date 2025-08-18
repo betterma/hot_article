@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社会热点网站导航合集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a4d8e);
+            color: #333;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        header p {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            padding-left: 55px;
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            color: #666;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+        
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .website-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .website-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            padding: 20px 20px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .platform-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #2a4d8e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .card-header h3 {
+            font-size: 1.4rem;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .card-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .visit-btn {
+            padding: 10px 20px;
+            background: #2a4d8e;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .visit-btn:hover {
+            background: #1a2a6c;
+        }
+        
+        .country-tag {
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+        
+        .tag-international {
+            background: #e6f7ff;
+            color: #1890ff;
+            border: 1px solid #91d5ff;
+        }
+        
+        .tag-domestic {
+            background: #f6ffed;
+            color: #52c41a;
+            border: 1px solid #b7eb8f;
+        }
+        
+        .stats {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .popular {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4d4f;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .popular-website {
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            .websites-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-globe-asia"></i> 社会热点网站导航</h1>
+            <p>一站式访问全网热门新闻与趋势，掌握最新社会动态</p>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="搜索热点网站">
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active">全部平台</button>
+                <button class="category-btn">国内热点</button>
+                <button class="category-btn">国际动态</button>
+                <button class="category-btn">社交媒体</button>
+                <button class="category-btn">聚合平台</button>
+            </div>
+        </header>
+        
+        <div class="websites-grid">
+            <!-- 微博热搜 -->
+            <div class="website-card popular-website">
+                <span class="popular">最热</span>
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #ff5f65;">
+                        <i class="fab fa-weibo"></i>
+                    </div>
+                    <h3>微博热搜</h3>
+                </div>
+                <div class="card-content">
+                    <p>实时追踪热点社会话题，反映当下最热门的舆论关注点，涵盖娱乐、社会、时政等全领域内容。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://s.weibo.com/top/summary" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 知乎热榜 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #0084ff;">
+                        <i class="fab fa-zhihu"></i>
+                    </div>
+                    <h3>知乎热榜</h3>
+                </div>
+                <div class="card-content">
+                    <p>高质量热点话题社区，由用户共同筛选出有价值的内容，深度分析社会热点事件的平台。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://www.zhihu.com/hot" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 今日头条 -->
+            <div class="website-card popular-website">
+                <span class="popular">热门</span>
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #f85959;">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>今日头条热榜</h3>
+                </div>
+                <div class="card-content">
+                    <p>基于AI算法的资讯平台，实时汇聚全网热点，提供个性化推荐的社会热点内容。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://www.toutiao.com/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 百度热搜 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #2932e1;">
+                        <i class="fab fa-baidu"></i>
+                    </div>
+                    <h3>百度热搜</h3>
+                </div>
+                <div class="card-content">
+                    <p>中国最大搜索引擎的热点榜单，反映国内用户最关心的实时热门搜索关键词。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://top.baidu.com/board?tab=realtime" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 抖音热榜 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #000;">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h3>抖音热榜</h3>
+                </div>
+                <div class="card-content">
+                    <p>短视频平台热点内容聚合，展现当下流行的网红事件、社会话题和生活分享。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://www.douyin.com/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 澎湃新闻 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #b22222;">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>澎湃新闻</h3>
+                </div>
+                <div class="card-content">
+                    <p>专注于原创优质新闻报道的新媒体平台，关注热点社会新闻与时政评论。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://www.thepaper.cn/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- B站热榜 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #00a1d6;">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>哔哩哔哩热榜</h3>
+                </div>
+                <div class="card-content">
+                    <p>年轻人喜爱的视频社区热点榜单，展现游戏、动漫、科普等垂直领域的流行趋势。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://www.bilibili.com/v/popular/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 网易新闻 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #e60000;">
+                        <i class="far fa-newspaper"></i>
+                    </div>
+                    <h3>网易新闻热榜</h3>
+                </div>
+                <div class="card-content">
+                    <p>综合性新闻门户网站的热点榜单，涵盖社会、财经、科技等多领域的实时热点资讯。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://www.163.com/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- Reddit热门 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #ff4500;">
+                        <i class="fab fa-reddit"></i>
+                    </div>
+                    <h3>Reddit热门</h3>
+                </div>
+                <div class="card-content">
+                    <p>全球性社交新闻平台，各领域热门话题汇聚，呈现国际主流社区的热点讨论。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-international">国际平台</span>
+                    <a href="https://www.reddit.com/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- Google趋势 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #4285f4;">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <h3>Google趋势</h3>
+                </div>
+                <div class="card-content">
+                    <p>全球搜索数据的热点分析平台，提供不同区域的热门搜索词和话题热度变化趋势。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-international">国际平台</span>
+                    <a href="https://trends.google.com/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- BBC新闻 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #bb1919;">
+                        <i class="fas fa-globe-europe"></i>
+                    </div>
+                    <h3>BBC新闻</h3>
+                </div>
+                <div class="card-content">
+                    <p>英国广播公司全球新闻服务，提供权威性的国际新闻和热点分析。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-international">国际平台</span>
+                    <a href="https://www.bbc.com/news" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+            
+            <!-- 虎扑社区 -->
+            <div class="website-card">
+                <div class="card-header">
+                    <div class="platform-icon" style="background: #dd1e3f;">
+                        <i class="fas fa-basketball-ball"></i>
+                    </div>
+                    <h3>虎扑社区</h3>
+                </div>
+                <div class="card-content">
+                    <p>体育爱好者聚集地，提供最新体育赛事动态、运动员新闻和深度评论。</p>
+                </div>
+                <div class="card-footer">
+                    <span class="country-tag tag-domestic">国内平台</span>
+                    <a href="https://bbs.hupu.com/" class="visit-btn" target="_blank">立即访问</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 标签按钮交互功能
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 移除所有按钮的active类
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // 给当前点击的按钮添加active类
+                this.classList.add('active');
+                
+                // 模拟标签切换逻辑（实际项目中这里会有过滤功能）
+                document.querySelector('header h1').textContent = '社会热点网站导航';
+                
+                if(this.textContent === '国内热点') {
+                    document.querySelector('header h1').textContent = '国内热门平台';
+                } else if(this.textContent === '国际动态') {
+                    document.querySelector('header h1').textContent = '国际热点平台';
+                } else if(this.textContent === '社交媒体') {
+                    document.querySelector('header h1').textContent = '社交媒体平台';
+                }
+            });
+        });
+        
+        // 卡片悬停效果增强
+        document.querySelectorAll('.website-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+        
+        // 搜索框功能
+        const searchInput = document.querySelector('.search-bar input');
+        searchInput.addEventListener('input', function() {
+            if(this.value.trim() !== '') {
+                document.querySelector('header h1').textContent = `搜索: ${this.value}`;
+            } else {
+                document.querySelector('header h1').textContent = '社会热点网站导航';
+            }
+        });
+    </script>
+</body>
+</html>

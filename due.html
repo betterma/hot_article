@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内容创作工作流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .workflow-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .workflow-step {
+            padding: 30px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .step-header {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .step-description {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .editor-container {
+            margin: 20px 0;
+        }
+        
+        .editor-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .rich-editor {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fff;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+        }
+        
+        .rich-editor:focus {
+            border-color: #888;
+        }
+        
+        .ai-platforms {
+            margin: 25px 0;
+        }
+        
+        .platform-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .platform-card {
+            flex: 1;
+            background: #f9f9f9;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .platform-card-header {
+            padding: 12px 15px;
+            background: #f0f0f0;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .platform-icon {
+            margin-right: 10px;
+            color: #555;
+        }
+        
+        .platform-card-content {
+            padding: 20px;
+        }
+        
+        .platform-card-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .visit-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        
+        .visit-btn:hover {
+            background: #555;
+        }
+        
+        .divider {
+            height: 1px;
+            background: #eaeaea;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .workflow-step {
+                padding: 20px;
+            }
+            
+            .platform-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="workflow-container">
+            <!-- 第一步：热点采集 -->
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div>
+                        <div class="step-title">热点采集</div>
+                        <div class="step-description">从社交媒体复制热点新闻和话题内容</div>
+                    </div>
+                </div>
+                
+                <div class="editor-container">
+                    <label class="editor-label">热点内容：</label>
+                    <div class="rich-editor" id="hotspot-editor" contenteditable="true">
+                        <p>1. 专家预测新一轮房价调整，北京上海等城市交易量锐减</p>
+                        <p>2. 新能源汽车销量连续三月创新高，比亚迪市场份额第一</p>
+                        <p>3. "五一"假期国内旅游人次达2.5亿，带动消费超3000亿元</p>
+                        <p>4. 我国新型核反应堆研究取得突破性进展，安全系数提升5倍</p>
+                        <p>5. 直播带货行业规范新规出台，将整治虚假宣传和刷单行为</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分割线 -->
+            <div class="divider"></div>
+            
+            <!-- 第二步：内容处理 -->
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div>
+                        <div class="step-title">内容处理</div>
+                        <div class="step-description">将AI处理后的内容粘贴到下方文本框</div>
+                    </div>
+                </div>
+                
+                <div class="editor-container">
+                    <label class="editor-label">处理后的内容：</label>
+                    <div class="rich-editor" id="processed-editor" contenteditable="true">
+                        <p>1. <strong>房价动态：</strong>多位专家指出，北京、上海等一线城市房地产交易量呈现下降趋势，市场进入新一轮调整期。</p>
+                        <p>2. <strong>新能源崛起：</strong>比亚迪凭借多款热销车型，连续3个月保持新能源汽车销量冠军地位，市场份额已达28%。</p>
+                        <p>3. <strong>旅游数据：</strong>今年"五一"假期期间，全国各景区接待游客总量达到历史性2.5亿人次，旅游消费总额突破3000亿元大关。</p>
+                        <p>4. <strong>能源突破：</strong>我国在核反应堆安全领域取得重大突破，新型反应堆设计将核事故风险降低5倍以上。</p>
+                        <p>5. <strong>监管规范：</strong>市场监管总局公布直播带货新规，重点打击虚假宣传、数据造假等违规行为。</p>
+                    </div>
+                </div>
+                
+                <div class="ai-platforms">
+                    <div class="platform-grid">
+                        <div class="platform-card">
+                            <div class="platform-card-header">
+                                <i class="fas fa-robot platform-icon"></i>
+                                豆包AI处理
+                            </div>
+                            <div class="platform-card-content">
+                                <p>智能内容重组与结构优化工具</p>
+                                <a href="https://ai.doubao.com" class="visit-btn" target="_blank">访问豆包AI</a>
+                            </div>
+                        </div>
+                        
+                        <div class="platform-card">
+                            <div class="platform-card-header">
+                                <i class="fas fa-magic platform-icon"></i>
+                                元宝AI优化
+                            </div>
+                            <div class="platform-card-content">
+                                <p>内容语义增强与可读性优化工具</p>
+                                <a href="https://ai.yuanbao.com" class="visit-btn" target="_blank">访问元宝AI</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 分割线 -->
+            <div class="divider"></div>
+            
+            <!-- 第三步：优化内容 -->
+            <div class="workflow-step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div>
+                        <div class="step-title">内容优化</div>
+                        <div class="step-description">将最终优化后的内容粘贴到下方文本框</div>
+                    </div>
+                </div>
+                
+                <div class="editor-container">
+                    <label class="editor-label">优化后的内容：</label>
+                    <div class="rich-editor" id="optimized-editor" contenteditable="true">
+                        <p><strong>房地产新趋势：</strong>专家预测楼市将迎来新一轮调整期！数据显示，北京上海等核心城市交易量环比下降23%，购房者观望情绪浓厚。行业分析师建议："现阶段需理性看待市场波动，避免盲目决策。"</p>
+                        <p><strong>新能源王者比亚迪：</strong>连续三个月销量领跑，市场占有率突破28%！新能源赛道持续火热，前五个月销量同比增长56%。消费者评价："相比燃油车，每公里成本仅需0.1元。"</p>
+                        <p><strong>五一旅游数据爆表：</strong>全国景区接待游客突破2.5亿人次，消费总额超3000亿元！其中"90后"成主力人群，占总游客数的46%。业内人士指出："个性化旅游产品需求激增，反向旅游受追捧。"</p>
+                        <p><strong>核能安全里程碑：</strong>我国新型核反应堆技术取得突破性进展！安全性提升500%，达到国际领先水平。项目负责人表示："该技术有望彻底解决公众对核电安全的担忧。"</p>
+                        <p><strong>直播带货新规出台：</strong>监管部门重拳整治行业乱象！新规明确禁止虚假宣传和刷单行为，违规主播将面临最高100万元罚款。专家解读："新规有助于行业健康发展，保护消费者权益。"</p>
+                    </div>
+                </div>
+                
+                <div class="ai-platforms">
+                    <div class="platform-grid">
+                        <div class="platform-card">
+                            <div class="platform-card-header">
+                                <i class="fas fa-robot platform-icon"></i>
+                                豆包AI优化
+                            </div>
+                            <div class="platform-card-content">
+                                <p>智能内容重组与结构优化工具</p>
+                                <a href="https://ai.doubao.com" class="visit-btn" target="_blank">访问豆包AI</a>
+                            </div>
+                        </div>
+                        
+                        <div class="platform-card">
+                            <div class="platform-card-header">
+                                <i class="fas fa-magic platform-icon"></i>
+                                元宝AI优化
+                            </div>
+                            <div class="platform-card-content">
+                                <p>内容语义增强与可读性优化工具</p>
+                                <a href="https://ai.yuanbao.com" class="visit-btn" target="_blank">访问元宝AI</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
